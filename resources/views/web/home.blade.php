@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>开始使用layui</title>
-    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="{{asset('js/layui/css/layui.css')}}">
 </head>
 <body>
 
 <!-- 你的HTML代码 -->
 
-<script src="../layui/layui.js"></script>
+<script src="{{asset('js/layui/layui.js')}}"></script>
 <script>
     //一般直接写在一个js文件中
     layui.use(['layer', 'form'], function(){
@@ -21,4 +21,4 @@
     });
 </script>
 </body>
-</html
+</html>
