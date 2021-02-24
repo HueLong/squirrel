@@ -31,6 +31,10 @@
     <script src="{{asset('js/web/home/jquery.waypoints.min.js?t=') . time()}}"></script>
     <!-- Magnific Popup -->
     <script src="{{asset('js/web/home/jquery.magnific-popup.min.js?t=') . time()}}"></script>
+    <!-- Salvattore -->
+    <script src="{{asset('js/web/home/salvattore.min.js?t=') . time()}}"></script>
+    <!-- Modernizr -->
+    <script src="{{asset('js/web/home/modernizr.js?t=') . time()}}"></script>
     <!-- Main JS -->
     <script src="{{asset('js/web/home/main.js?t=') . time()}}"></script>
 </head>

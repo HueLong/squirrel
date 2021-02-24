@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['namespace' => 'Oss'], function () {
+    Route::get('/oss_policy', 'AliYunOssSignController@index');
 });
+
