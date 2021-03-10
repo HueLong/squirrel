@@ -1,5 +1,35 @@
 <?php
 
+/**
+ * Created by PhpStorm.
+ * User: G_S
+ * Date: 2021/03/10
+ * Time: 13:37
+ * ━━━━━━━━━神兽出没━━━━━━━━━
+ *　　　　　　　　┏┓　　　┏┓+ +
+ *　　　　　　　┏┛┻━━━┛┻┓ + +
+ *　　　　　　　┃　　　　　　　┃ 　
+ *　　　　　　　┃　　　━　　　┃ ++ + + +
+ *　　　　　　 ████━████ ┃+
+ *　　　　　　　┃　　　　　　　┃ +
+ *　　　　　　　┃　　　┻　　　┃
+ *　　　　　　　┃　　　　　　　┃ + +
+ *　　　　　　　┗━┓　　　┏━┛
+ *　　　　　　　　　┃　　　┃　　　　　　　　　　　
+ *　　　　　　　　　┃　　　┃ + + + +
+ *　　　　　　　　　┃　　　┃　　　　Code is far away from bug with the animal protecting　　　　　　　
+ *　　　　　　　　　┃　　　┃ + 　　　　神兽保佑,代码无bug　　
+ *　　　　　　　　　┃　　　┃
+ *　　　　　　　　　┃　　　┃　　+　　　　　　　　　
+ *　　　　　　　　　┃　 　　┗━━━┓ + +
+ *　　　　　　　　　┃ 　　　　　　　┣┓
+ *　　　　　　　　　┃ 　　　　　　　┏┛
+ *　　　　　　　　　┗┓┓┏━┳┓┏┛ + + + +
+ *　　　　　　　　　　┃┫┫　┃┫┫
+ *　　　　　　　　　　┗┻┛　┗┻┛+ + + +
+ * ━━━━━━━━━感觉萌萌哒━━━━━━━━━
+ */
+
 namespace App\Http\Controllers\Api\Oss;
 
 use App\Http\Controllers\Controller;
@@ -17,7 +47,7 @@ class AliYunOssSignController extends Controller
         $key = env('ACCESS_KEY', '');
         $host = env('OSS_HOST', '');
         $callbackUrl = '';
-        $dir = '';
+        $dir = 'design/';
         $callback_param = array(
             'callbackUrl' => $callbackUrl,
             'callbackBody' => 'filename=${object}&size=${size}&mimeType=${mimeType}&height=${imageInfo.height}&width=${imageInfo.width}',

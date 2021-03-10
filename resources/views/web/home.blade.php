@@ -41,6 +41,7 @@
 <body>
 <div id="fh5co-main">
     <div class="container">
+        <input type="file" class="layui-btn" id="uploadImg" accept="image/*" />
         <div class="row">
             <div id="fh5co-board" data-columns="4">
                 <div class="column size-1of4">
@@ -323,5 +324,6 @@
         </div>
     </div>
 </div>
+<script src="{{asset('js/web/home/home.js?t=') . time()}}"></script>
 </body>
 </html>
