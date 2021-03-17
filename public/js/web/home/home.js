@@ -8,6 +8,36 @@ file.onchange = function() {
     var fileData = this.files[0];//这是我们上传的文件
     fileUpload(fileData);
 };
+getListImage();
+function getListImage() {
+    $.get("/api/list_img", {}, function(res) {
+        if(res.code == 200){
+            //教师列表数据
+            var listData = res.data;
+            var str = '<div id="fh5co-board" data-columns="4">';
+            if (listData) {
+                var number = listData.length;
+                var num = Math.floor(number/4);
+                str += '<div class="column size-1of4">';
+                $.each(listData,function(index,value){
+                    str += '<div class="item">\n' +
+                        '       <div class="animate-box bounceIn animated">\n' +
+                        '           <a href="./img/web/home/img_1.jpg" class="image-popup fh5co-board-img"\n' +
+                        '                               title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, eos?">\n' +
+                        '                 <img src="' + value.true_url + '" alt="' + value.title + '">\n' +
+                        '             </a>\n' +
+                        '        </div>\n' +
+                        '       <div class="fh5co-desc">' + value.title + '</div>\n';
+
+                });
+                str +=  '</div>';
+            }
+            str += ' </div>';
+            $('.row').append(str)
+        }
+    });
+}
+
 function fileUpload(file){
     get_signature();
     if(!sign_obj) {
@@ -46,6 +76,23 @@ function fileUpload(file){
             layer.msg('系统出现异常，请稍后', {icon: 2, time: 2000});
         }
     });
+    var request = new FormData();
+    request.append("img_url",g_object_name);
+    request.append("title",file['name']);
+    $.ajax({
+        url : '/api/upload_img',  //上传阿里地址
+        data : request,
+        processData: false,//默认true，设置为 false，不需要进行序列化处理
+        cache: false,//设置为false将不会从浏览器缓存中加载请求信息
+        async: false,//发送同步请求
+        contentType: false,//避免服务器不能正常解析文件---------具体的可以查下这些参数的含义
+        dataType: 'json',//不涉及跨域  写json即可
+        type : 'post',
+        success : function(callbackHost, request) {     //callbackHost：success,request中就是 回调的一些信息，包括状态码什么的
+            console.log(request);
+        },
+    });
+    window.location.reload();
     return JSON.stringify(infos);
 
 }

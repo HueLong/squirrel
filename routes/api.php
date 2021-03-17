@@ -17,3 +17,8 @@ Route::group(['namespace' => 'Oss'], function () {
     Route::get('/oss_policy', 'AliYunOssSignController@index');
 });
 
+Route::group(['namespace' => 'Web'], function () {
+    Route::get('/list_img', 'ImageController@listImage');
+    Route::post('/upload_img', 'ImageController@saveImage');
+});
+
