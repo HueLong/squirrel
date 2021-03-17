@@ -17,20 +17,65 @@ function getListImage() {
             var str = '<div id="fh5co-board" data-columns="4">';
             if (listData) {
                 var number = listData.length;
-                var num = Math.floor(number/4);
-                str += '<div class="column size-1of4">';
+                var one = '', two = '', three = '', four = '';
                 $.each(listData,function(index,value){
-                    str += '<div class="item">\n' +
-                        '       <div class="animate-box bounceIn animated">\n' +
-                        '           <a href="./img/web/home/img_1.jpg" class="image-popup fh5co-board-img"\n' +
-                        '                               title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, eos?">\n' +
-                        '                 <img src="' + value.true_url + '" alt="' + value.title + '">\n' +
-                        '             </a>\n' +
-                        '        </div>\n' +
-                        '       <div class="fh5co-desc">' + value.title + '</div>\n';
+                    var num  = (index + 1) % 4;
+                    if (num === 1) {
+                        if (!one) {
+                            one += '<div class="column size-1of4">';
+                        }
+                        one += '<div class="item">\n' +
+                            '       <div class="animate-box bounceIn animated">\n' +
+                            '           <a href="./img/web/home/img_1.jpg" class="image-popup fh5co-board-img"\n' +
+                            '                               title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, eos?">\n' +
+                            '                 <img src="' + value.true_url + '" alt="' + value.title + '">\n' +
+                            '             </a>\n' +
+                            '        </div>\n' +
+                            '       <div class="fh5co-desc">' + value.title + '</div>\n' +
+                            '    </div>\n';
 
+                    }else if (num === 2) {
+                        if (!two) {
+                            two += '<div class="column size-1of4">';
+                        }
+                        two += '<div class="item">\n' +
+                            '       <div class="animate-box bounceIn animated">\n' +
+                            '           <a href="./img/web/home/img_1.jpg" class="image-popup fh5co-board-img"\n' +
+                            '                               title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, eos?">\n' +
+                            '                 <img src="' + value.true_url + '" alt="' + value.title + '">\n' +
+                            '             </a>\n' +
+                            '        </div>\n' +
+                            '       <div class="fh5co-desc">' + value.title + '</div>\n' +
+                            '    </div>\n';
+                    }else if (num === 3) {
+                        if (!three) {
+                            three += '<div class="column size-1of4">';
+                        }
+                        three += '<div class="item">\n' +
+                            '       <div class="animate-box bounceIn animated">\n' +
+                            '           <a href="./img/web/home/img_1.jpg" class="image-popup fh5co-board-img"\n' +
+                            '                               title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, eos?">\n' +
+                            '                 <img src="' + value.true_url + '" alt="' + value.title + '">\n' +
+                            '             </a>\n' +
+                            '        </div>\n' +
+                            '       <div class="fh5co-desc">' + value.title + '</div>\n' +
+                            '    </div>\n';
+                    }else if (num === 0) {
+                        if (!four) {
+                            four += '<div class="column size-1of4">';
+                        }
+                        four += '<div class="item">\n' +
+                            '       <div class="animate-box bounceIn animated">\n' +
+                            '           <a href="./img/web/home/img_1.jpg" class="image-popup fh5co-board-img"\n' +
+                            '                               title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, eos?">\n' +
+                            '                 <img src="' + value.true_url + '" alt="' + value.title + '">\n' +
+                            '             </a>\n' +
+                            '        </div>\n' +
+                            '       <div class="fh5co-desc">' + value.title + '</div>\n' +
+                            '    </div>\n';
+                    }
                 });
-                str +=  '</div>';
+                str +=  one + '</div>' + two + '</div>' + three + '</div>' + four + '</div>';
             }
             str += ' </div>';
             $('.row').append(str)
@@ -79,6 +124,7 @@ function fileUpload(file){
     var request = new FormData();
     request.append("img_url",g_object_name);
     request.append("title",file['name']);
+    layer.load(2);
     $.ajax({
         url : '/api/upload_img',  //上传阿里地址
         data : request,
@@ -90,6 +136,7 @@ function fileUpload(file){
         type : 'post',
         success : function(callbackHost, request) {     //callbackHost：success,request中就是 回调的一些信息，包括状态码什么的
             console.log(request);
+            layer.close(loading);
         },
     });
     window.location.reload();
