@@ -9,76 +9,97 @@ file.onchange = function() {
     fileUpload(fileData);
 };
 getListImage();
-function getListImage() {
-    $.get("/api/list_img", {}, function(res) {
-        if(res.code == 200){
-            //教师列表数据
-            var listData = res.data;
-            var str = '<div id="fh5co-board" data-columns="4">';
-            if (listData) {
-                var number = listData.length;
-                var one = '', two = '', three = '', four = '';
-                $.each(listData,function(index,value){
-                    var num  = (index + 1) % 4;
-                    if (num === 1) {
-                        if (!one) {
-                            one += '<div class="column size-1of4">';
-                        }
-                        one += '<div class="item">\n' +
-                            '       <div class="animate-box bounceIn animated">\n' +
-                            '           <a href="./img/web/home/img_1.jpg" class="image-popup fh5co-board-img"\n' +
-                            '                               title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, eos?">\n' +
-                            '                 <img src="' + value.true_url + '" alt="' + value.title + '">\n' +
-                            '             </a>\n' +
-                            '        </div>\n' +
-                            '       <div class="fh5co-desc">' + value.title + '</div>\n' +
-                            '    </div>\n';
-
-                    }else if (num === 2) {
-                        if (!two) {
-                            two += '<div class="column size-1of4">';
-                        }
-                        two += '<div class="item">\n' +
-                            '       <div class="animate-box bounceIn animated">\n' +
-                            '           <a href="./img/web/home/img_1.jpg" class="image-popup fh5co-board-img"\n' +
-                            '                               title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, eos?">\n' +
-                            '                 <img src="' + value.true_url + '" alt="' + value.title + '">\n' +
-                            '             </a>\n' +
-                            '        </div>\n' +
-                            '       <div class="fh5co-desc">' + value.title + '</div>\n' +
-                            '    </div>\n';
-                    }else if (num === 3) {
-                        if (!three) {
-                            three += '<div class="column size-1of4">';
-                        }
-                        three += '<div class="item">\n' +
-                            '       <div class="animate-box bounceIn animated">\n' +
-                            '           <a href="./img/web/home/img_1.jpg" class="image-popup fh5co-board-img"\n' +
-                            '                               title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, eos?">\n' +
-                            '                 <img src="' + value.true_url + '" alt="' + value.title + '">\n' +
-                            '             </a>\n' +
-                            '        </div>\n' +
-                            '       <div class="fh5co-desc">' + value.title + '</div>\n' +
-                            '    </div>\n';
-                    }else if (num === 0) {
-                        if (!four) {
-                            four += '<div class="column size-1of4">';
-                        }
-                        four += '<div class="item">\n' +
-                            '       <div class="animate-box bounceIn animated">\n' +
-                            '           <a href="./img/web/home/img_1.jpg" class="image-popup fh5co-board-img"\n' +
-                            '                               title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, eos?">\n' +
-                            '                 <img src="' + value.true_url + '" alt="' + value.title + '">\n' +
-                            '             </a>\n' +
-                            '        </div>\n' +
-                            '       <div class="fh5co-desc">' + value.title + '</div>\n' +
-                            '    </div>\n';
-                    }
-                });
-                str +=  one + '</div>' + two + '</div>' + three + '</div>' + four + '</div>';
+$('.row').on("click", ".image-popup", function(e) {
+    e.preventDefault();
+    $(this).magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        closeBtnInside: true,
+        mainClass: 'mfp-with-zoom mfp-img-mobile',
+        image: {
+            verticalFit: true,
+            titleSrc: function(item) {
+                return item.el.attr('data-title');
             }
-            str += ' </div>';
-            $('.row').append(str)
+        },
+        zoom: {
+            enabled: true
+        }
+    }).magnificPopup('open');
+});
+function getListImage() {
+    $.ajax({
+        type: 'get',
+        url: '/api/list_img',
+        success: function (res) {
+            if(res.code == 200){
+                //教师列表数据
+                var listData = res.data;
+                var str = '<div id="fh5co-board" data-columns="4">';
+                if (listData) {
+                    var number = listData.length;
+                    var one = '', two = '', three = '', four = '';
+                    $.each(listData,function(index,value){
+                        var num  = (index + 1) % 4;
+                        if (num === 1) {
+                            if (!one) {
+                                one += '<div class="column size-1of4">';
+                            }
+                            one += '<div class="item">\n' +
+                                '       <div class="animate-box bounceIn animated">\n' +
+                                '           <a href="' + value.true_url + '" data-source="' + value.true_url + '" data-title="' + value.title + '" class="image-popup fh5co-board-img"\n' +
+                                '                               title="' + value.title + '">\n' +
+                                '                 <img src="' + value.true_url + '" alt="' + value.title + '">\n' +
+                                '             </a>\n' +
+                                '        </div>\n' +
+                                '       <div class="fh5co-desc">' + value.title + '</div>\n' +
+                                '    </div>\n';
+                        }else if (num === 2) {
+                            if (!two) {
+                                two += '<div class="column size-1of4">';
+                            }
+                            two += '<div class="item">\n' +
+                                '       <div class="animate-box bounceIn animated">\n' +
+                                '           <a href="' + value.true_url + '" data-source="' + value.true_url + '" data-title="' + value.title + '" class="image-popup fh5co-board-img"\n' +
+                                '                               title="' + value.title + '">\n' +
+                                '                 <img src="' + value.true_url + '" alt="' + value.title + '">\n' +
+                                '             </a>\n' +
+                                '        </div>\n' +
+                                '       <div class="fh5co-desc">' + value.title + '</div>\n' +
+                                '    </div>\n';
+                        }else if (num === 3) {
+                            if (!three) {
+                                three += '<div class="column size-1of4">';
+                            }
+                            three += '<div class="item">\n' +
+                                '       <div class="animate-box bounceIn animated">\n' +
+                                '           <a href="' + value.true_url + '" data-source="' + value.true_url + '" data-title="' + value.title + '" class="image-popup fh5co-board-img"\n' +
+                                '                               title="' + value.title + '">\n' +
+                                '                 <img src="' + value.true_url + '" alt="' + value.title + '">\n' +
+                                '             </a>\n' +
+                                '        </div>\n' +
+                                '       <div class="fh5co-desc">' + value.title + '</div>\n' +
+                                '    </div>\n';
+                        }else if (num === 0) {
+                            if (!four) {
+                                four += '<div class="column size-1of4">';
+                            }
+                            four += '<div class="item">\n' +
+                                '       <div class="animate-box bounceIn animated">\n' +
+                                '           <a href="' + value.true_url + '" data-source="' + value.true_url + '" data-title="' + value.title + '" class="image-popup fh5co-board-img"\n' +
+                                '                               title="' + value.title + '">\n' +
+                                '                 <img src="' + value.true_url + '" alt="' + value.title + '">\n' +
+                                '             </a>\n' +
+                                '        </div>\n' +
+                                '       <div class="fh5co-desc">' + value.title + '</div>\n' +
+                                '    </div>\n';
+                        }
+                    });
+                    str +=  one + '</div>' + two + '</div>' + three + '</div>' + four + '</div>';
+                }
+                str += ' </div>';
+                $('.row').append(str)
+            }
         }
     });
 }
@@ -210,3 +231,5 @@ function guid() {
         return v.toString(16);
     });
 }
+
+

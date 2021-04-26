@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths ss-shaded-scrollbars" style="transition: background-color 0.15s ease 0s; margin-right: 17px; overflow: hidden;">
 <head>
     <meta charset="utf-8">
     <title>Layui</title>
@@ -30,7 +30,7 @@
     <!-- Waypoints -->
     <script src="{{asset('js/web/home/jquery.waypoints.min.js?t=') . time()}}"></script>
     <!-- Magnific Popup -->
-    <script src="{{asset('js/web/home/jquery.magnific-popup.min.js?t=') . time()}}"></script>
+    <script src="{{asset('js/web/home/jquery.magnific-popup.js?t=') . time()}}"></script>
     <!-- Salvattore -->
     <script src="{{asset('js/web/home/salvattore.min.js?t=') . time()}}"></script>
     <!-- Modernizr -->
@@ -42,13 +42,13 @@
     </style>
 </head>
 <body>
-<div id="fh5co-main">
-    <div class="container">
-        <input type="file" class="layui-btn" id="uploadImg" accept="image/*" />
-        <div class="row">
+    <div id="fh5co-main">
+        <div class="container">
+            <input type="file" class="layui-btn" id="uploadImg" accept="image/*" />
+            <div class="row">
+            </div>
         </div>
     </div>
-</div>
-<script src="{{asset('js/web/home/home.js?t=') . time()}}"></script>
+    <script src="{{asset('js/web/home/home.js?t=') . time()}}"></script>
 </body>
 </html>
