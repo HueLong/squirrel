@@ -9,11 +9,11 @@
     float: left;
 }
 @media screen and (max-width: 480px) {
-    .column {
-        float: none;
-        position: relative;
-        clear: both;
-    }
+    /*.column {*/
+    /*    float: none;*/
+    /*    position: relative;*/
+    /*    clear: both;*/
+    /*}*/
 }
 .size-1of4 {
     width: 25%;
