@@ -10,9 +10,12 @@
   },
   "dependencies": {
     "axios": "^1.7.2",
+    "swiper": "^11.1.8",
     "tailwindcss": "^3.4.7",
     "vue": "^3.4.29",
-    "vue-masonry-css": "^1.0.3"
+    "vue-awesome-swiper": "^5.0.1",
+    "vue-masonry-css": "^1.0.3",
+    "vue-waterfall-plugin-next": "^2.4.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",

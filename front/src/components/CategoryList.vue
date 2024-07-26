@@ -1,25 +1,110 @@
 <template>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-      <div v-for="category in categories" :key="category.id" class="relative bg-cover bg-center h-48" :style="{ backgroundImage: `url(${category.image})` }">
-        <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 text-center">
-          {{ category.title }}
+  <swiper
+    :slidesPerView="3"
+    :spaceBetween="30"
+    :freeMode="true"
+    :pagination="{
+      clickable: true,
+    }"
+    :modules="modules"
+    class="categoryList"
+  >
+    <swiper-slide v-for="(v, index) in images" :key="index">
+      <div class="slide-content">
+          <img :src="v" class="banner-image" />
+          <div class="slide-caption">
+            <h3 class="slide-title">这是标题</h3>
+            <p class="slide-description">这是简介这是简介这是简介这是简介这是简介这是简介</p>
+          </div>
         </div>
-      </div>
-    </div>
-  </template>
-  
-  <script>
+    </swiper-slide>
+  </swiper>
+</template>
+<script>
+  // Import Swiper Vue.js components
+  import { Swiper, SwiperSlide } from 'swiper/vue';
+
+  // Import Swiper styles
+  import 'swiper/css';
+
+  import 'swiper/css/free-mode';
+  import 'swiper/css/pagination';
+
+  // import required modules
+  import { FreeMode, Pagination } from 'swiper/modules';
+
   export default {
-    name: 'CategoryList',
-    data() {
+    components: {
+      Swiper,
+      SwiperSlide,
+    },
+    setup() {
       return {
-        categories: [
-          { id: 1, title: 'Category 1', image: '/path/to/category1.jpg' },
-          { id: 2, title: 'Category 2', image: '/path/to/category2.jpg' },
-          { id: 3, title: 'Category 3', image: '/path/to/category3.jpg' },
-        ],
+        modules: [FreeMode, Pagination],
+        images: [
+        'https://cdn.huelong.com/pic-go/2024/07/26/e55b093b82b6a64d9bd943d84157bbd1-07672f.jpg',
+        'https://cdn.huelong.com/pic-go/2023/08/24/cf4769cb9f19bae83cfabacf5f44dfa4-1d65fe.jpg',
+        'https://cdn.huelong.com/pic-go/2024/07/26/9a55771884afafcd9aba1ac611c83663-90689d.png',
+        'https://cdn.huelong.com/pic-go/2024/07/26/e55b093b82b6a64d9bd943d84157bbd1-07672f.jpg',
+        'https://cdn.huelong.com/pic-go/2023/08/24/cf4769cb9f19bae83cfabacf5f44dfa4-1d65fe.jpg',
+        'https://cdn.huelong.com/pic-go/2024/07/26/9a55771884afafcd9aba1ac611c83663-90689d.png',
+      ],
       };
     },
   };
-  </script>
-  
+</script>
+
+<style>
+.categoryList {
+  width: 100%;
+  height: 100%;
+  margin: 20px auto;
+
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.slide-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.slide-title {
+  margin: 0;
+  font-size: 18px;
+}
+
+.slide-description {
+  margin: 5px 0 0;
+  font-size: 14px;
+}
+
+</style>
