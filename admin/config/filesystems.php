@@ -63,9 +63,9 @@ return [
                 'https'     => 'https://cdn.huelong.com',         //你的HTTPS域名
                 'custom'    => '',                //你的自定义域名
             ],
-            'access_key'=> 'eYk6b04xUMgxlQHodW3VxfKIdCTK4dMkTX5mX0wV',  //AccessKey
-            'secret_key'=> 'RCtLvonXpNpxR3yZ-b4Kyx8qVZjiumCYTK7-WWfe',  //SecretKey
-            'bucket'    => 'pic-bed-1225',  //Bucket名字
+            'access_key'=> env('QINIU_ACCESS_KEY'),  //AccessKey
+            'secret_key'=> env('QINIU_SECRET_KEY'),  //SecretKey
+            'bucket'    => env('QINIU_BUCKET'),  //Bucket名字
             'notify_url'=> '',  //持久化处理回调地址
             'url'       => '',  // 填写文件访问根url
         ],
