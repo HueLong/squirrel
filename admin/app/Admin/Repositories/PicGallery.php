@@ -13,4 +13,10 @@ class PicGallery extends EloquentRepository
      * @var string
      */
     protected $eloquentClass = Model::class;
+
+
+    public function batchInsert(array $list): bool
+    {
+        return $this->model->newQuery()->insert($list);
+    }
 }
