@@ -19,7 +19,7 @@ services:
       build: ./dockerfile/php8.1
       volumes:
         - ./log/php:/home/www-data/php
-        - ./project:/project
+        - ../../squirrel:/project
       ports:
         - "9000"
       restart: always
