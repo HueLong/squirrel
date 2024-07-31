@@ -1,0 +1,63 @@
+version: "3.5"
+
+services:
+  web:
+    container_name: local-web
+    build: ./dockerfile/nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./conf/nginx/:/etc/nginx/conf.d
+      - ./log/nginx/:/etc/nginx/log
+      - ../../squirrel:/project
+    restart: always
+    networks:
+      - my_network
+
+  php:
+      container_name: local-php8.1
+      build: ./dockerfile/php8.1
+      volumes:
+        - ./log/php:/home/www-data/php
+        - ./project:/project
+      ports:
+        - "9000"
+      restart: always
+      user: root
+      networks:
+        - my_network
+      cap_add:
+        - SYS_PTRACE
+
+#  redis:
+#     container_name: local-redis
+#     image: redis:alpine
+#     ports:
+#       - "6379:6379"
+#     networks:
+#       - my_network
+#     restart: always
+#     volumes:
+#       - ./config/redis/redis.conf:/usr/local/etc/redis/redis.conf
+#     command: redis-server /usr/local/etc/redis/redis.conf
+
+#   mysql:
+#     container_name: local-mysql8.0
+#     build: ./dockerfile/mysql
+#     ports:
+#       - "3306:3306"
+#     volumes:
+#       - ./data/db_data:/var/lib/mysql
+#     restart: always
+#     networks:
+#       - my_network
+#     environment:
+#       MYSQL_ROOT_PASSWORD: "3wvCL0oleYJ9QeJ"
+#       MYSQL_DATABASE: blog
+#       MYSQL_USER: huelong
+#       MYSQL_PASSWORD: "J1gZNPJABVePJI3"
+#     command: --default-authentication-plugin=caching_sha2_password
+
+networks:
+  my_network:
+    name: my_network
