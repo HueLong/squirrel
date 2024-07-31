@@ -3,9 +3,9 @@ FROM php:8.1.0-fpm-alpine
 ENV TIMEZONE Asia/Shanghai
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories \
-  && mkdir -p /huabaobao/admin \
-  && chmod 777 -R /huabaobao/admin 
-WORKDIR /huabaobao/admin
+  && mkdir -p /project/admin \
+  && chmod 777 -R /project/admin
+WORKDIR /project/admin
 
 RUN apk update && apk upgrade
 RUN  curl -L -o /tmp/composer.phar https://mirrors.aliyun.com/composer/composer.phar  \
