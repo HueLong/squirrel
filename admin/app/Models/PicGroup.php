@@ -3,14 +3,15 @@
 namespace App\Models;
 
 use Dcat\Admin\Traits\HasDateTimeFormatter;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-class PicGallery extends Model
+class PicGroup extends Model
 {
 	use HasDateTimeFormatter;
-    protected $table = 'pic_gallery';
+//    use SoftDeletes;
 
+    protected $table = 'pic_group';
 
     public function setUpdatedAtAttribute($value)
     {
@@ -21,6 +22,5 @@ class PicGallery extends Model
     {
         $this->attributes['created_at'] = $value ? strtotime($value) : 0;
     }
-
 
 }

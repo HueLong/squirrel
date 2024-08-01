@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
     'labels' => [
         'PicGallery' => '图库',
@@ -7,7 +7,7 @@ return [
     'fields' => [
         'name' => '图片名称',
         'desc' => '图片描述',
-        'pic_url' => '图片链接',
+        'pic_url' => '图片',
         'status' => '状态值',
     ],
     'options' => [

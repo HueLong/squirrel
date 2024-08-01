@@ -52,6 +52,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection desc
      * @property Grid\Column|Collection pic_url
      * @property Grid\Column|Collection status
+     * @property Grid\Column|Collection cover
      * @property Grid\Column|Collection email_verified_at
      *
      * @method Grid\Column|Collection id(string $label = null)
@@ -95,6 +96,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection desc(string $label = null)
      * @method Grid\Column|Collection pic_url(string $label = null)
      * @method Grid\Column|Collection status(string $label = null)
+     * @method Grid\Column|Collection cover(string $label = null)
      * @method Grid\Column|Collection email_verified_at(string $label = null)
      */
     class Grid {}
@@ -143,6 +145,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection desc
      * @property Show\Field|Collection pic_url
      * @property Show\Field|Collection status
+     * @property Show\Field|Collection cover
      * @property Show\Field|Collection email_verified_at
      *
      * @method Show\Field|Collection id(string $label = null)
@@ -186,6 +189,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection desc(string $label = null)
      * @method Show\Field|Collection pic_url(string $label = null)
      * @method Show\Field|Collection status(string $label = null)
+     * @method Show\Field|Collection cover(string $label = null)
      * @method Show\Field|Collection email_verified_at(string $label = null)
      */
     class Show {}

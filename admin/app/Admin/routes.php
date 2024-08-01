@@ -16,6 +16,7 @@ Route::group([
 
     // 图库
     $router->resource('/pic_gallery', 'PicGalleryController');
+    $router->resource('/pic_group', 'PicGroupController');
 
 
 });
