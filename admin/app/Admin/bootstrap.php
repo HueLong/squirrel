@@ -25,6 +25,34 @@ use Dcat\Admin\Show;
  *
  */
 
+//表单默认值
+Form::resolving(function (Form $form) {
+    $form->disableEditingCheck();
+    $form->disableCreatingCheck();
+    $form->disableViewCheck();
+
+    $form->tools(function (Form\Tools $tools) {
+        $tools->disableDelete();
+        $tools->disableView();
+    });
+});
+
+//列表默认值
 Grid::resolving(function (Grid $grid) {
-    $grid->model()->orderBy("id", "DESC");
+    //排序-默认倒序
+    $grid->model()->orderBy($grid->model()->getKeyName(), 'desc');
+
+    //行间距模式
+    $grid->tableCollapse(false);
+
+    //默认显示按钮
+
+    //筛选项-默认展开且放置在列表头部
+    $grid->filter(function (Grid\Filter $filter) {
+        $filter->panel();
+        $filter->expand(true);
+    });
+
+    $grid->disableBatchDelete();
+
 });

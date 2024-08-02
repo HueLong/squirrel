@@ -2,8 +2,8 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Grid\ActivityBirthdayCopy;
 use App\Admin\Repositories\PicGroup;
-use App\Service\PicGalleryService;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
@@ -27,8 +27,14 @@ class PicGroupController extends AdminController
             $grid->column('created_at');
 
             $grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('id');
+//                $filter->equal('id');
+            });
 
+            $grid->disableBatchDelete();
+
+            $grid->actions(function (Grid\Displayers\Actions $actions) {
+                $actions->disableView();
+                $actions->disableDelete();
             });
         });
     }
@@ -62,6 +68,7 @@ class PicGroupController extends AdminController
     {
         return Form::make(new PicGroup(), function (Form $form) {
             $form->disableResetButton();
+
 
             $form->display('id');
             $form->text('name');
