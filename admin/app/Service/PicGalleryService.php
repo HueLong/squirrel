@@ -28,4 +28,9 @@ class PicGalleryService extends BaseService
         return $this->picGalleryRep->batchInsert($insertData);
     }
 
+    public function getPicListByGroupId($groupId)
+    {
+        return $this->picGalleryRep->getPicListByGroupId($groupId);
+    }
+
 }

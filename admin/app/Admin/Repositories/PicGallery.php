@@ -19,4 +19,14 @@ class PicGallery extends EloquentRepository
     {
         return $this->model->newQuery()->insert($list);
     }
+
+    public function getPicListByGroupId($groupId): array
+    {
+        $list = $this->model->newQuery()
+            ->join("pic_gallery_group as gg", "gg.pic_id", "=", "pic_gallery.id")
+            ->where("gg.group_id", $groupId)
+            ->select("pic_gallery.id", "pic_gallery.name", "pic_gallery.pic_url")
+            ->get();
+        return $list ? $list->toArray() : [];
+    }
 }

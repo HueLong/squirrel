@@ -3,6 +3,8 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\ActivityBirthdayCopy;
+use App\Admin\Renderable\GoodsListView;
+use App\Admin\Renderable\PicListView;
 use App\Admin\Repositories\PicGroup;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -22,6 +24,15 @@ class PicGroupController extends AdminController
             $grid->column('id')->sortable();
             $grid->column('name');
             $grid->column('cover')->image();
+            $grid->column('pic_list')
+                ->display(function () {
+                    return "查看";
+                })
+                ->modal(function ($modal) {
+                    $modal->title('图片列表');
+                    return PicListView::make(['group_id' => $this->id]);
+                });
+
             $grid->column('desc');
             $grid->column('status');
             $grid->column('created_at');

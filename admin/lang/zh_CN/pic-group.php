@@ -9,6 +9,7 @@ return [
         'cover' => '封面图',
         'desc' => '组别描述',
         'status' => '状态值',
+        'pic_list' => '组内图片'
     ],
     'options' => [
     ],
