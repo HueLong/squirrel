@@ -1,0 +1,54 @@
+// get#Name$ByIds 获取#Name$信息
+func (s #Name$Service) get#Name$ByIds(ids ...int) map[int]model.#Name$ {
+
+	var #name$Map = make(map[int]model.#Name$)
+	var notCachedIds []int
+	for _, id := range ids {
+	    cacheKey:=fmt.Sprintf(cache_enum.#cacheKey$,id)
+		var #name$ model.#Name$
+		err := cache.GetInstance().GetJson(cacheKey, &#name$)
+		if err != nil {
+			notCachedIds = append(notCachedIds, id)
+		} else {
+		    cache.GetInstance().Exp(cacheKey, &#name$)
+			#name$Map[id] = #name$
+		}
+	}
+	if len(notCachedIds) > 0 {
+		#name$s := model.#Name$Model{}.Get#Name$ByIds(notCachedIds...)
+		for _, value := range #name$s {
+		    cacheKey:=fmt.Sprintf(cache_enum.#cacheKey$,value.Id)
+			_ = cache.GetInstance().SetJson(cacheKey, value, 0)
+			#name$Map[value.Id] = value
+		}
+	}
+	return #Name$Map
+}
+
+// getShopInfoByUid 获取店铺基础信息
+func (s ShopService) getShopInfoByUid(uid int) model.Shop {
+	cacheKey := fmt.Sprintf(cache_enum.ShopInfo, uid)
+	var shopInfo model.Shop
+	err := cache.GetInstance().GetJson(cacheKey, &shopInfo)
+	if err != nil {
+		// 获取店铺在抽奖页面展示的基本信息
+		shopInfo = model.ShopModel{}.GetShopInfoByUid(uid)
+		_ = cache.GetInstance().SetJson(cacheKey, shopInfo, 600)
+	}
+	return shopInfo
+}
+====
+// Get#Name$ByIds 通过一组ID获取#Name$ 信息
+func (m #Name$Model) Get#Name$ByIds(id ...int) []#Name$ {
+	var #name$s []#Name$
+	#name$s = []#Name${}
+	db.Db.Where("id IN ?", id).Find(&#name$s)
+	return #name$s
+}
+
+//Get#Name$ById 通过单个ID获取#Name$信息
+func (m #Name$) Get#Name$ById(id int) #Name$ {
+	var #name$ #Name$
+	db.Db.Where("id = ?", id).Find(&#name$)
+	return #name$
+}
