@@ -10,9 +10,8 @@ func InitApi(engine *gin.Engine) {
 	api := engine.Group("api")
 	//2.1.0版本
 
-	ad := api.Group("ad")
+	picGallery := api.Group("pic_gallery")
 	{
-		ad.GET("show_position", controller.GetAdByShowPosition)
-		ad.GET("list", controller.GetAdList)
+		picGallery.GET("list", controller.GetPicGalleryList)
 	}
 }

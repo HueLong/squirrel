@@ -7,7 +7,7 @@ import (
 	"hbbapi/app/middleware"
 	"hbbapi/router"
 	"hbbapi/util/db"
-	"hbbapi/util/jwt"
+	"hbbapi/util/redis"
 	"hbbapi/util/validate"
 	"log"
 	"os"
@@ -35,8 +35,7 @@ func main() {
 	validate.Init()
 	//初始化数据库
 	db.Init()
-	//redis.Init()
-	jwt.Init()
+	redis.Init()
 	engine := gin.New()
 	engine.Use(middleware.Cors(), middleware.IpBlock(), middleware.Auth(), middleware.Log(), middleware.BucketToken(), middleware.Recovery(), middleware.Throttle())
 	router.InitApi(engine)

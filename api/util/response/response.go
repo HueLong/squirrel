@@ -10,7 +10,7 @@ import (
 
 // Success 返回正确结果
 func Success(c *gin.Context, data interface{}) {
-	c.JSON(http.StatusOK, gin.H{"errcode": 0, "errmsg": "成功", "data": data})
+	c.JSON(http.StatusOK, gin.H{"code": 0, "msg": "成功", "data": data})
 }
 
 func Fail(c *gin.Context, message string, data interface{}) {
