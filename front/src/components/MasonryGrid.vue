@@ -1,111 +1,66 @@
 <template>
-  <div>
-    <Waterfall :list="list" rowKey="id" imgSelector="src" :width="320" :breakpoints="{
+  <div class="masonry_list" @scroll="handleScroll">
+
+    <Waterfall :list="list" rowKey="id" imgSelector="pic_url" :width="320" :breakpoints="{
       1200: { rowPerView: 3 },
       800: { rowPerView: 2 },
       500: { rowPerView: 2 }
     }" :gutter="10" :lazyload="true">
-      <template #item="{ item, url, index }">
+      <template #item="{ item}">
         <div class="card">
-          <LazyImg :url="url" />
-          <p class="text">这是具体内容</p>
+          <LazyImg :url="item.pic_url" />
+          <p class="text">{{item.name}} {{item.desc}}</p>
         </div>
       </template>
     </Waterfall>
+    <button v-if="reachedBottom" @click="loadMoreData">加载更多</button>
+
   </div>
 </template>
 
 <script>
 import { LazyImg, Waterfall } from 'vue-waterfall-plugin-next';
+
 import 'vue-waterfall-plugin-next/dist/style.css';
+import axios from 'axios';
+
 
 export default {
   data() {
-    return {
-      list: [
-        {
-          id: 1,
-          src: "https://cdn.huelong.com/pic-go/2024/01/24/652a6b2fe2a9d078ba4bb7e03a9bcba5-78dbf7.jpg",
+        return {
+            list: [],
+            loading: true,
+            currentPage: 1, // 当前页码
+            pageSize: 30, // 每页显示的条目数
+        };
+    },
+    created() {
+        this.fetchImages();
+    },
+    methods: {
+        fetchImages() {
+            this.loading = true;
+
+            axios.get(`http://127.0.0.1:8080/api/pic_gallery/list?page=${this.currentPage}&size=${this.pageSize}`)
+                .then(response => {
+                    this.list = response.data.data.list;
+                })
+                .catch(error => {
+                    console.error("Error fetching images:", error);
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
         },
-        {
-          id: 2,
-          src: "https://cdn.huelong.com/pic-go/2023/08/24/cf4769cb9f19bae83cfabacf5f44dfa4-1d65fe.jpg",
-        },
-        {
-          id: 3,
-          src: "https://cdn.huelong.com/pic-go/2023/09/12/5181ce8853a0dddcafa3d9cf91949318-8e70da.png",
-        },
-        {
-          id: 4,
-          src: "https://cdn.huelong.com/pic-go/2023/09/12/147f87539521953e92efa0e696a5f3c6-4482be.png",
-        },
-        {
-          id: 5,
-          src: "https://cdn.huelong.com/pic-go/2024/02/18/a23fc98995f693ab30cba87846e93ad6-d52645.jpeg",
-        },
-        {
-          id: 1,
-          src: "https://cdn.huelong.com/pic-go/2024/01/24/652a6b2fe2a9d078ba4bb7e03a9bcba5-78dbf7.jpg",
-        },
-        {
-          id: 2,
-          src: "https://cdn.huelong.com/pic-go/2023/08/24/cf4769cb9f19bae83cfabacf5f44dfa4-1d65fe.jpg",
-        },
-        {
-          id: 3,
-          src: "https://cdn.huelong.com/pic-go/2023/09/12/5181ce8853a0dddcafa3d9cf91949318-8e70da.png",
-        },
-        {
-          id: 4,
-          src: "https://cdn.huelong.com/pic-go/2023/09/12/147f87539521953e92efa0e696a5f3c6-4482be.png",
-        },
-        {
-          id: 5,
-          src: "https://cdn.huelong.com/pic-go/2024/02/18/a23fc98995f693ab30cba87846e93ad6-d52645.jpeg",
-        },
-        {
-          id: 1,
-          src: "https://cdn.huelong.com/pic-go/2024/01/24/652a6b2fe2a9d078ba4bb7e03a9bcba5-78dbf7.jpg",
-        },
-        {
-          id: 2,
-          src: "https://cdn.huelong.com/pic-go/2023/08/24/cf4769cb9f19bae83cfabacf5f44dfa4-1d65fe.jpg",
-        },
-        {
-          id: 3,
-          src: "https://cdn.huelong.com/pic-go/2023/09/12/5181ce8853a0dddcafa3d9cf91949318-8e70da.png",
-        },
-        {
-          id: 4,
-          src: "https://cdn.huelong.com/pic-go/2023/09/12/147f87539521953e92efa0e696a5f3c6-4482be.png",
-        },
-        {
-          id: 5,
-          src: "https://cdn.huelong.com/pic-go/2024/02/18/a23fc98995f693ab30cba87846e93ad6-d52645.jpeg",
-        },
-        {
-          id: 1,
-          src: "https://cdn.huelong.com/pic-go/2024/01/24/652a6b2fe2a9d078ba4bb7e03a9bcba5-78dbf7.jpg",
-        },
-        {
-          id: 2,
-          src: "https://cdn.huelong.com/pic-go/2023/08/24/cf4769cb9f19bae83cfabacf5f44dfa4-1d65fe.jpg",
-        },
-        {
-          id: 3,
-          src: "https://cdn.huelong.com/pic-go/2023/09/12/5181ce8853a0dddcafa3d9cf91949318-8e70da.png",
-        },
-        {
-          id: 4,
-          src: "https://cdn.huelong.com/pic-go/2023/09/12/147f87539521953e92efa0e696a5f3c6-4482be.png",
-        },
-        {
-          id: 5,
-          src: "https://cdn.huelong.com/pic-go/2024/02/18/a23fc98995f693ab30cba87846e93ad6-d52645.jpeg",
-        },
-      ],
-    };
-  },
+        handleScroll() {
+          const container = this.$el.querySelector('.masonry_list');
+          if (container.scrollHeight - container.scrollTop === container.clientHeight) {
+            this.reachedBottom = true;
+          } else {
+            this.reachedBottom = false;
+          }
+      }
+    },
   components: {
     LazyImg,
     Waterfall,
