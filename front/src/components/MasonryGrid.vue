@@ -41,7 +41,7 @@ export default {
         fetchImages() {
             this.loading = true;
 
-            axios.get(`http://127.0.0.1:8080/api/pic_gallery/list?page=${this.currentPage}&size=${this.pageSize}`)
+            axios.get(`http://api.squirrel.huelong.com:8080/api/pic_gallery/list?page=${this.currentPage}&size=${this.pageSize}`)
                 .then(response => {
                     this.list = response.data.data.list;
                 })
