@@ -8,7 +8,7 @@
     }" :gutter="10" :lazyload="true">
       <template #item="{ item}">
         <div class="card">
-          <LazyImg :url="item.pic_url" />
+          <LazyImg :url="item.pic_url+'-pic_slimming3'" />
           <p class="text">{{item.name}} {{item.desc}}</p>
         </div>
       </template>
@@ -41,7 +41,7 @@ export default {
         fetchImages() {
             this.loading = true;
 
-            axios.get(`http://api.squirrel.huelong.com:8080/api/pic_gallery/list?page=${this.currentPage}&size=${this.pageSize}`)
+            axios.get(`http://127.0.0.1:8080/api/pic_gallery/list?page=${this.currentPage}&size=${this.pageSize}`)
                 .then(response => {
                     this.list = response.data.data.list;
                 })

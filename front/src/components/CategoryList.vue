@@ -42,12 +42,12 @@
       return {
         modules: [FreeMode, Pagination],
         images: [
-        'https://cdn.huelong.com/pic-go/2024/07/26/e55b093b82b6a64d9bd943d84157bbd1-07672f.jpg',
-        'https://cdn.huelong.com/pic-go/2023/08/24/cf4769cb9f19bae83cfabacf5f44dfa4-1d65fe.jpg',
-        'https://cdn.huelong.com/pic-go/2024/07/26/9a55771884afafcd9aba1ac611c83663-90689d.png',
-        'https://cdn.huelong.com/pic-go/2024/07/26/e55b093b82b6a64d9bd943d84157bbd1-07672f.jpg',
-        'https://cdn.huelong.com/pic-go/2023/08/24/cf4769cb9f19bae83cfabacf5f44dfa4-1d65fe.jpg',
-        'https://cdn.huelong.com/pic-go/2024/07/26/9a55771884afafcd9aba1ac611c83663-90689d.png',
+        'https://cdn.huelong.com/pic-go/2024/07/26/e55b093b82b6a64d9bd943d84157bbd1-07672f.jpg-pic_slimming',
+        'https://cdn.huelong.com/pic-go/2023/08/24/cf4769cb9f19bae83cfabacf5f44dfa4-1d65fe.jpg-pic_slimming',
+        'https://cdn.huelong.com/pic-go/2024/07/26/9a55771884afafcd9aba1ac611c83663-90689d.png-pic_slimming',
+        'https://cdn.huelong.com/pic-go/2024/07/26/e55b093b82b6a64d9bd943d84157bbd1-07672f.jpg-pic_slimming',
+        'https://cdn.huelong.com/pic-go/2023/08/24/cf4769cb9f19bae83cfabacf5f44dfa4-1d65fe.jpg-pic_slimming',
+        'https://cdn.huelong.com/pic-go/2024/07/26/9a55771884afafcd9aba1ac611c83663-90689d.png-pic_slimming',
       ],
       };
     },

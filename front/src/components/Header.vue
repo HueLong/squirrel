@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <img src="https://cdn.huelong.com/pic-go/2024/08/01/64521e9a25a204d7b410ea8d86dda8cd-df30ba.jpg" alt="Logo"
+    <img src="https://cdn.huelong.com/pic-go/2024/08/01/64521e9a25a204d7b410ea8d86dda8cd-df30ba.jpg-pic_slimming4" alt="Logo"
       class="logo" />
     <div class="navbar">登陆</div>
   </div>
